@@ -35,7 +35,6 @@ post "/signup" do
   redirect to "/users/:user_id"
 end
 
-
 get "/signin" do
   erb :signin
 end
