@@ -8,6 +8,12 @@ body{
   -o-background-size: cover;
   background-size: cover;
 }
+#formField {
+	font-size:18px;
+	height:20px;
+	width:200px;
+	
+}
 #main {
 	width:20%;
 	height:100%;
