@@ -1,6 +1,7 @@
 require "sinatra"
 require "sinatra/activerecord"
-# require "./models"
+require "bundler/setup"
+require "./models"
 
 # set :database, "sqlite3:exercise-2.sqlite3"
 
