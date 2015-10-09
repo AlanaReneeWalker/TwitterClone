@@ -1,0 +1,36 @@
+<% content_for :head do %>
+  <title>DogCrimes</title>
+<% end %>
+
+<% if session[:user_id] %>
+  <div id="mainCont">
+  		<div id="headerCont">
+  			<div id="logo">
+
+  			</div>
+  			<div id="member">
+  				<p id="welcome">Welcome, <%= @user.fname %> <%= @user.lname %></p>
+
+
+
+  			</div>
+  			
+        </div>
+
+        <div id="followFeed">
+
+        </div>
+        <div id="mainFeed">
+
+        </div>
+  </div>
+
+  <p id="welcome">Welcome, <%= @user.fname %> <%= @user.lname %></p>
+
+  ------------------
+  <div id="index_body"> </div>
+
+<div id="nonmembersSignup"> <h3> <p> Not a member? </p> <a href="/signup"> Sign Up! </a> </h3> </div>
+		<div id="membersLogin"> <h3> <p> Already a member? </p> <a href="/signin"> Sign In! </a> </h3> </div>
+
+
