@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+
+    <% if content_for?(:head) %>
+          <%= yield_content :head %>
+    <% else %>
+    	  <head>Dog Crimes</head>
+    <% end %>
+
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-<!-- <body class="%= yield_content :css %"> -->
+
+<% if content_for?(:bodySignup) %>
+  <%= yield_content :bodySignup %>
+<% else %>
+  <body>
+<% end %>
+
 <%= yield %>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

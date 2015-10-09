@@ -2,6 +2,8 @@ require "sinatra"
 require "sinatra/activerecord"
 require "bundler/setup"
 require 'rack-flash' 
+require "sinatra/content_for"
+require "sinatra/contrib/all"
 require "./models"
 
 set :database, "sqlite3:DogCrimes.sqlite3"
@@ -33,7 +35,7 @@ post "/signup" do
   	 				  username: params[:username],
   	 				  password: params[:password])
   session[:user_id] = @user.id
-  redirect "/users/:user_id"
+  redirect "/users/#{@user.id}"
 end
 
 get "/signin" do

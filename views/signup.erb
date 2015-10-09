@@ -1,9 +1,15 @@
+<% content_for :head do %>
+  <title>Sign Up</title>
+<% end %>
 
-<!-- % content_for :css do
+
+<% content_for :bodySignup do %>
+  <body id="bodySignup">
+<% end %>
 
 
-end -->
-
+<div id="login-main">
+<img src="img/dogcrimes-med.png">
 
 
 <div id="main">
@@ -28,13 +34,14 @@ end -->
 				<input type="text" name="username" id="formField" placeholder="username" /><br>
 
 			<label for="password">Password</label><br>
-				<input type="password" name="password" id="formField" />	<br><br>
+				<input type="password" name="password" id="formField" />	<br>
 				
-			<input type="submit" value="Submit" /><br>
+			<input class="btn" type="submit" value="Submit" />
 			
 
 
 </form>
 <br>
 
+</div>
 </div>

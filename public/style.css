@@ -1,5 +1,6 @@
 
-body{ 
+  
+#bodySignup { 
  
   background: url(img/dog-background.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -7,22 +8,62 @@ body{
   -o-background-size: cover;
   background-size: cover;
 }
+
+h1 {
+	font-style: Georgia;
+	font-size: 26px;
+	color: black;
+	text-align: center;
+
+	margin-bottom:4px;
+	margin-top:4px;
+}
+
+
 #formField {
 	font-size:18px;
+	margin-bottom: 5px;
 	height:20px;
-	width:80%;
+	width:60%;
 	
 }
+
+#login-main{
+width:28%;
+margin-top:-2%;
+margin-left: 15%;
+}
+
+#login-main img {
+	width: 90%;
+	margin-bottom:-5px;
+}
+
+/*------------ Button -------------*/
+
+.btn {
+  margin-top: 10px;
+  color: #900;
+  background: #ffffff;
+  font-weight: bold;
+  border: 1px solid #900;
+}
+ 
+.btn:hover {
+  color: #FFF;
+  background: #900;
+}
+/*------------ Button -------------*/
+
 #main {
 	
-	width:25%;
+	width:90%;
 	height:100%;
 	border: 3px solid black;
 	background-color: white;
 	border-radius: 40px 40px 40px 40px;
 	text-align: center;
-	margin-top: 17%;
-	margin-left: 15%;
+	
 	
 }
 .notice {

@@ -1,6 +1,15 @@
-<!-- % content_for :css do
+<% content_for :head do %>
+  <title>Sign In</title>
+<% end %>
 
-end -->
+
+<% content_for :bodySignup do %>
+  <body id="bodySignup">
+<% end %>
+
+
+<div id="login-main">
+<img src="img/dogcrimes-med.png">
 
 
 <div id="main">
@@ -20,11 +29,11 @@ end -->
 <h1>Sign In:</h1>
 
 <form method="POST" action="/signin">
-  <label for="username">Username</label>
-  <input type="text" name="username" id="formField" >
-  <label for="password">Password</label>
-  <input type="password" name="password" id="formField">
-  <input type="submit" value="Submit">
+  <label for="username">Username</label><br>
+  <input type="text" name="username" id="formField" ><br>
+  <label for="password">Password</label><br>
+  <input type="password" name="password" id="formField"><br> 
+  <input type="submit" class="btn" value="Submit">
 </form>
 <br>
 
