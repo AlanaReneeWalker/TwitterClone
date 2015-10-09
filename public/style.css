@@ -141,17 +141,21 @@ margin-left: 15%;
 	width: 100%;
 	padding: 10px;
 	height: 30px;
-	border-bottom: 1px solid black;
+/*	border-bottom: 1px solid black;*/
 	position: relative;
+	
 }
 #menu ul {
 	margin: 20px 270px;
-	
+	display: inline;
+
 }
 
 #menu li {
-	display: inline;
+	display: inline-block;
 	font-size: 20px;
+	float: left;
+
 }
 
 #menu li a {
@@ -170,6 +174,9 @@ margin-left: 15%;
 
 #menu li a:hover {
 	background-color: #dcdcdc;
+}
+nav {
+	margin-bottom: -10px;
 }
 
 #index_body {

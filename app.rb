@@ -1,7 +1,7 @@
 require "sinatra"
 require "sinatra/activerecord"
 require "bundler/setup"
-require 'rack-flash' 
+require "rack-flash" 
 require "sinatra/content_for"
 require "sinatra/contrib/all"
 require "./models"
