@@ -4,7 +4,7 @@
 
 
 
-
+<% if session[:user_id] %>
 
 <div id="mainCont">
 	<div id="headerCont">
@@ -13,7 +13,7 @@
 		</div> 
 
 		<div id="memberHeaderInfo">
-  				<p id="welcome">Welcome, Alana Walker!!!!!!!!!!!!!!!!</p>
+  				<p id="welcome">Welcome, <%= @user.fname %> <%= @user.lname %></p>
   				<nav id="menu">
 					<ul>
 						<li><a href="/">Feed</a>
@@ -27,4 +27,46 @@
         </div>
 		
 	</div>
+  <div id="mainFeed">	
+    <% @user.posts.each do |post| %>
+    <div id="postFeed">
+	   <p><span id="userName"><%= @post.time %> - <%=post.subject %> by <%= @post.user_id.username %></span></p>
+	   <p><%= post.body %></p>
+    </div>
+  </div>
+  <div id="followFeed">
+	<% @user.posts.following.each do |post| %>
+	<div id="postFeed">
+	   <p><span id="userName"><%= @post.time %> - <%=post.subject %> by <%= @post.user_id.username %></span></p>
+	   <p><%= post.body %></p>
+    </div>
+  </div> 
 </div>
+
+<% else %>
+
+<div id="mainCont">
+	<div id="headerCont">
+		<div id="logo"> 
+			<img src="img/dogcrimes-med.png"> 
+		</div> 
+		<div id="nonmembersSignup"> 
+			<h3> <p> Not a member? </p> 
+			<a href="/signup"> Sign Up! </a> </h3> 
+		</div>
+		<div id="membersLogin"> 
+			<h3> <p> Already a member? </p> 
+			<a href="/signin"> Sign In! </a> </h3> 
+		</div>  
+		
+	</div>
+  <div id="fullFeed">	
+    <% @user.posts.each do |post| %>
+    <div id="postFeed">
+	   <p><span id="userName"><%= @post.time %> - <%=post.subject %> by <%= @post.user_id.username %></span></p>
+	   <p><%= post.body %></p>
+    </div>
+  </div>
+
+</div>  
+<% end %>

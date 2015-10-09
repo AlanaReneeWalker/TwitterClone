@@ -183,5 +183,15 @@ nav {
 	width: 60%;
 	height: 60%;
 }
+#mainFeed {
+	width: 48%;
+	border-right: 1px dotted black;
+}
+#followFeed {
+	width: 48%;
+}
+#fullFeed {
+	width: 95%;
+}
 
 
