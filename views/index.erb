@@ -2,8 +2,6 @@
   <title>DogCrimes</title>
 <% end %>
 
-
-
 <% if session[:user_id] %>
 
 <div id="mainCont">
@@ -63,7 +61,7 @@
   <div id="fullFeed">	
     <% @user.posts.each do |post| %>
     <div id="postFeed">
-	   <p><span id="userName"><%= @post.time %> - <%=post.subject %> by <%= @post.user_id.username %></span></p>
+	   <p><span id="userName"><%= post.time %> - <%=post.subject %> by <%= post.user.username %></span></p>
 	   <p><%= post.body %></p>
     </div>
   </div>

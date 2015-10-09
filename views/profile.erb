@@ -1,0 +1,35 @@
+<% content_for :head do %>
+  <title> Profile </title>
+<% end %>
+
+<% if session[:user_id] %>
+
+<div id="mainCont">
+	<div id="headerCont">
+		<div id="logo"> 
+			<img src="img/dogcrimes-med.png"> 
+		</div> 
+
+		<div id="memberHeaderInfo">
+  				<p id="welcome">Welcome, <%= @user.fname %> <%= @user.lname %></p>
+  				<nav id="menu">
+					<ul>
+						<li><a href="/">Feed</a>
+  						<li><a href="/profile">Profile</a></li>
+  						<li><a href="/account">Account</a></li>
+  				
+					</ul>
+
+				</nav>
+
+	<div id="profileFeed">	
+    <% @user.posts.each do |post| %>
+
+    <div id="postFeed">
+	   <p><span id="userName"><%= post.time %> - <%=post.subject %> by <%= post.user.username %></span></p>
+	   <p><%= post.body %></p>
+    </div>
+  </div>
+  		<%end%>		
+ </div>
+</div>
