@@ -42,7 +42,6 @@ get "/signin" do
   erb :signin
 end
 
-
 post "/signin" do
 	@user=User.where(username: params[:username]).last
   if @user && @user.password == params[:password]
@@ -53,4 +52,8 @@ post "/signin" do
 	flash[:alert] = "Wrong username and/or password."
 	redirect "/signin" 
   end
+end
+
+get "/" do
+  erb :index
 end
