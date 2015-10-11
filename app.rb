@@ -78,7 +78,7 @@ get "/logout" do
 	 else
 	 	redirect '/'
 end
-
+end
 
 
 
