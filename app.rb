@@ -13,10 +13,10 @@ use Rack::Flash, sweep: true
 
 
 
-get "/users/:user_id" do
-  if session[:user_id]
-  	params[:user_id]
-    @user = User.find(session[:user_id])
+get "/users/:user.id" do
+  if @user.id != session[:user_id]
+  	 @currentuser = User.find(session[:user_id])
+  		# @follower = User.find()
   end
   
   erb :profile
@@ -34,13 +34,14 @@ post "/signup" do
   	 				  email: params[:email],
   	 				  username: params[:username],
   	 				  password: params[:password])
-  session[:user_id] = @user.id
-  redirect "/users/#{@user.id}"
+  redirect "/sign_in"
 end
+
 
 get "/signin" do
   erb :signin
 end
+
 
 post "/signin" do
 	@user=User.where(username: params[:username]).last
@@ -54,6 +55,31 @@ post "/signin" do
   end
 end
 
+
+post "/make-post" do
+	@post = Post.create(subject: params[:subject],
+						body: params[:body],
+						user_id: params[:user_id],
+						time: params[:time])
+	redirect "/users/:user.id"
+end
+
 get "/" do
+  @users = User.all
+  @post = Post.all
   erb :index
 end
+
+get "/logout" do
+	 if session[:user_id]
+		@user = User.find(session[:user_id])
+		session[:user_id] = nil
+		redirect '/'
+	 else
+	 	redirect '/'
+end
+
+
+
+
+
