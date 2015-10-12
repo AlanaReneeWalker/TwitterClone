@@ -1,6 +1,7 @@
 <% content_for :head do %>
-  <title>DogCrimes</title>
+  <title>Posts from <%= @user.fname %> <%= @user.lname %></title>
 <% end %>
+
 
 <div id="mainCont">
 	<div id="headerCont">
@@ -44,23 +45,29 @@
     <% end %>
   </div>  
 
+<% if session[:user_id] == current_user.id %>
 
-  <div id="feed100">	
+    <form class="form" method="POST" action="/make-post">
+			
+			<label for="name">Post Name:</label><br>
+			<input type="text" name="subject" id="formField" /><br>
+			
+			<label for="name">Post Message:</label><br>
+			<textarea name="message_body" placeholder="Write a post..." /></textarea>
 
-	<% if flash[:info] %>     
-  		   <div class="notice">   
-  			 <%=flash[:info] %>     
-  		   </div>   
-  	<% end %>   
+				
+			<input class="btn" type="submit" value="Submit" />
+	</form>
+<% end %>
 
-    <% @posts.each do |post| %>
-    <div id="postFeed">
-	   <p><span id="userName"><%= post.time %> - <%=post.subject %> by 
-	   <a href="/users/<%= :user.id %>"><%= post.user_id.username %></a></span></p>
-	   <p><%= post.body %></p>
-    </div>
-    <% end %>
-  </div>
+	<div id="feed100">	
+    	<% @posts.each do |post| %>
+			<div id="postFeed">
+    		<p><span id="userName"><%= post.time %> - <%= post.subject %></span></p>
+	   		<p><%= post.body %></p>
+  			</div>
+  		<% end %>		
+ 	</div>
+ 	
 
-</div>  
-
+</div>

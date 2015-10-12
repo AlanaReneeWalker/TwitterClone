@@ -1,6 +1,7 @@
 <% content_for :head do %>
-  <title>DogCrimes</title>
+  <title>Connections: <%= @user.fname %> <%= @user.lname %></title>
 <% end %>
+
 
 <div id="mainCont">
 	<div id="headerCont">
@@ -13,7 +14,7 @@
 
 		<div id="memberHeaderInfo">
 
-  				<p id="welcome">Posts from <%= @user.fname %> <%= @user.lname %></p>
+  				<p id="welcome">Connections from <%= @user.fname %> <%= @user.lname %></p>
   				<nav id="menu">
 					<ul>
 						<li><a href="/">Feed</a></li>
@@ -42,25 +43,16 @@
 		</div>  
     
     <% end %>
-  </div>  
+	</div>
+<h1><%= @user.fname %> <%= @user.lname %> is following these users:</h1>
+<% @usersFollowee.each do |user| %>
+Username: <% user.username %>
+<% end %>
 
+<h1><%= @user.fname %> <%= @user.lname %> is followed by these users:</h1>
+<% @usersFollower.each do |user| %>
+Username: <% user.username %>
+<% end %>
+ 	
 
-  <div id="feed100">	
-
-	<% if flash[:info] %>     
-  		   <div class="notice">   
-  			 <%=flash[:info] %>     
-  		   </div>   
-  	<% end %>   
-
-    <% @posts.each do |post| %>
-    <div id="postFeed">
-	   <p><span id="userName"><%= post.time %> - <%=post.subject %> by 
-	   <a href="/users/<%= :user.id %>"><%= post.user_id.username %></a></span></p>
-	   <p><%= post.body %></p>
-    </div>
-    <% end %>
-  </div>
-
-</div>  
-
+</div>
