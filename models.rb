@@ -1,23 +1,23 @@
 class User < ActiveRecord::Base
-  # the way we describe follows is as a list
-  #   of people that have followed you
-  # when we want to see a list of all the follows we have
-  #   we must tell it to look at the followee_id foreign key
-  has_many :follows, foreign_key: :followee_id
   has_many :posts
   has_one :profile
+  has_many :follows, foreign_key: :followee_id
+  has_many :followings, foreign_key: :follower_id, class_name: "::Follow"
+  has_many :followers, through: :follows, class_name: User
+  has_many :followees, through: :followings, class_name: User
 end
+
 
 class Profile < ActiveRecord::Base
 	belongs_to :user
 end
 
+
 class Follow < ActiveRecord::Base
-  # when we want to see a list of all follows,
-  #   we must indicate that when we do a <follow object>.user
-  #   it needs to look at the follower_id foreign key
-  belongs_to :user, foreign_key: :follower_id
+  belongs_to :follower, foreign_key: :follower_id, class_name: User
+  belongs_to :followee, foreign_key: :followee_id, class_name: User
 end
+
 
 class Post < ActiveRecord::Base
   belongs_to :user

@@ -11,16 +11,29 @@ enable :sessions
 set :sessions, true
 use Rack::Flash, sweep: true
 
-
-
-get "/users/:user.id" do
-  if @user.id != session[:user_id]
-  	 @currentuser = User.find(session[:user_id])
-  		# @follower = User.find()
-  end
-  
-  erb :profile
+def current_user
+	if session [:user_id]
+		@current_user = User.find(session[:user_id])
+	end
 end
+
+get "/" do
+  @posts=Post.all
+  erb :index
+end
+
+get "/users/:users.id/posts" do
+	@posts = Post.where(user_id: session[:user_id])
+	erb :posts
+end
+
+get "/users/:user.id/connections" do
+	@usersFollowee= current_user.followees
+	@usersFollowers= current_user.followers
+	erb :connections
+end
+
+
 
 
 get "/signup" do
@@ -34,6 +47,7 @@ post "/signup" do
   	 				  email: params[:email],
   	 				  username: params[:username],
   	 				  password: params[:password])
+  flash[:info] = "Please sign in using your new username and password."
   redirect "/sign_in"
 end
 
@@ -44,11 +58,11 @@ end
 
 
 post "/signin" do
-	@user=User.where(username: params[:username]).last
-  if @user && @user.password == params[:password]
+	@user=User.where(username: params[:username]).first
+  if (@user && @user.password == params[:password])
     session[:user_id] = @user.id
-    flash[:notice] = "You've been signed in successfully."  
-    redirect "/users/#{@user.id}" 
+    flash[:info] = "You've been signed in successfully."  
+    redirect "/" 
   else     
 	flash[:alert] = "Wrong username and/or password."
 	redirect "/signin" 
@@ -61,14 +75,9 @@ post "/make-post" do
 						body: params[:body],
 						user_id: params[:user_id],
 						time: params[:time])
-	redirect "/users/:user.id"
+	redirect "/users/:users.id/posts"
 end
 
-get "/" do
-  @users = User.all
-  @post = Post.all
-  erb :index
-end
 
 get "/logout" do
 	 if session[:user_id]
@@ -77,9 +86,5 @@ get "/logout" do
 		redirect '/'
 	 else
 	 	redirect '/'
+	 end
 end
-
-
-
-
-
