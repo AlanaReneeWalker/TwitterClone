@@ -17,10 +17,10 @@
   		<% end %>
 
 
-    	<% @posts.each do |post| %>
+    	<% @posts.reverse.each do |post| %>
     		<div id="postFeed">
 	   			<p><span id="userName"><%= post.time %> - <%=post.subject %> by 
-	   			<a href="/posts/<%= post.user_id %>"><%= post.user_id.username %></a></span></p>
+	   			<a href="/posts/<%= post.user_id %>"><%= post.user.username %></a></span></p>
 	   			<p><%= post.body %></p>
     		</div>
     	<% end %>
