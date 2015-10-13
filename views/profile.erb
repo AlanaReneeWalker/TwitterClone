@@ -22,14 +22,13 @@
 					</ul>
 
 				</nav>
-<<<<<<< HEAD
+
 		</div>
 		</div>
 	<div id="fullFeed">	
-=======
+
     	</div>
     </div>
-
 
 
 
@@ -45,8 +44,7 @@
 			<input class="btn" type="submit" value="Submit" />
 	</form>
 
-
-
+	
 
 	<div id="fullFeed100">	
     	<% @user.posts.each do |post| %>
@@ -93,7 +91,7 @@
 		
 	</div>
   <div id="feed70">	
->>>>>>> b9bc0b614a234af2d5ca94702d14d1e1c5b2fedb
+
     <% @user.posts.each do |post| %>
     	<div id="postFeed">
 	   		<p><span id="userName"><%= @post.time %> - <%=post.subject %> by <a href="/users/<%= :user.id %>"><%= @post.user_id.username %></a></span></p>
