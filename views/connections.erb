@@ -20,7 +20,7 @@
 						<li><a href="/">Feed</a></li>
   						<li><a href="/users/<%= :user.id %>/posts">Posts</a></li>
   						<li><a href="/users/<%= :user.id %>/connections">Connections</a></li>
-  						<li><a href="/account">Account</a></li>
+  						<li><a href="/users/<%= :user.id %>/profile">Profile</a></li>
   				
 					</ul>
 
@@ -46,12 +46,12 @@
 	</div>
 <h1><%= @user.fname %> <%= @user.lname %> is following these users:</h1>
 <% @usersFollowee.each do |user| %>
-Username: <% user.username %>
+<p>Username: <a href="/users/<%= :user.id %>/posts"><%=user.username %></a></p>
 <% end %>
 
 <h1><%= @user.fname %> <%= @user.lname %> is followed by these users:</h1>
 <% @usersFollower.each do |user| %>
-Username: <% user.username %>
+<p>Username: <a href="/users/<%= :user.id %>/posts"><%=user.username %></a></p>
 <% end %>
  	
 

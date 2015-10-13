@@ -79,12 +79,12 @@ margin-left: 15%;
 	
 	
 }
-.notice {
+.info {
     width:90%;
 	height:100%;
 	
 	text-align: center;
-	margin-top: 10%;
+	margin-top: 10px;
 	margin-left: 10%;
 	color: black;
 	text-decoration: bold;
@@ -113,28 +113,34 @@ margin-left: 15%;
 }
 
 #headerCont {
-	display: inline-block;
+	/*display: inline-block;*/
 	width: 100%;
-	
+	height: 140px;
+	background-image:url("img/dogcrimes-med.png");
+    background-position: 2% 100%;
+    background-size: 18% 88%;
+    background-repeat: no-repeat;
 	border-bottom: 1px solid gray;
+	
 }
-#logo {
-	float: left;
-	display: inline;
-	width: 33%;
+
+#leftMarg {
+	text-align: right;
+	margin-right:30px;
 }
-#logo img {
-	width: 50%;
-	margin-bottom: -5px;
+#rightMarg {
+	text-align: right;
+	margin-right:20px;
 }
+
 #nonmembersSignup {
-	float: left;
+	float: center;
 	display: inline;
 	width: 33%;
 	text-align: center;
 }
 #membersLogin {
-	float: left;
+	float: center;
 	display: inline;
 	width: 33%;
 	text-align: center;
@@ -153,13 +159,14 @@ margin-left: 15%;
 #menu{
 	width: 100%;
 	padding: 10px;
+	margin-top: 36px;
 	height: 30px;
 /*	border-bottom: 1px solid black;*/
-	position: relative;
+	/*position: relative;*/
 	
 }
 #menu ul {
-	margin: 20px 270px;
+	margin: 50px 140px;
 	display: inline;
 
 }
@@ -167,7 +174,7 @@ margin-left: 15%;
 #menu li {
 	display: inline-block;
 	font-size: 20px;
-	float: left;
+	float: center;
 
 }
 

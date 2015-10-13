@@ -1,118 +1,36 @@
 <% content_for :head do %>
-  <title>Profile</title>
+  <title>Connections: <%= @user.fname %> <%= @user.lname %></title>
 <% end %>
-
-<% if session[:user_id] == @user.id %>
 
 
 <div id="mainCont">
 	<div id="headerCont">
+
+	<% if session[:user_id] %>
+
 		<div id="logo"> 
 			<img src="img/dogcrimes-med.png"> 
 		</div> 
 
 		<div id="memberHeaderInfo">
-  				<p id="welcome">Profile for <%= @user.fname %> <%= @user.lname %></p>
+
+  				<p id="welcome">Connections from <%= @user.fname %> <%= @user.lname %></p>
   				<nav id="menu">
 					<ul>
 						<li><a href="/">Feed</a></li>
-  						<li><a href="/users/<%= :user.id %>">Profile</a></li>
-  						<li><a href="/account">Account</a></li>
+  						<li><a href="/users/<%= :user.id %>/posts">Posts</a></li>
+  						<li><a href="/users/<%= :user.id %>/connections">Connections</a></li>
+  						<li><a href="/users/<%= :user.id %>/profile">Profile</a></li>
   				
 					</ul>
 
 				</nav>
-<<<<<<< HEAD
-		</div>
-		</div>
-	<div id="fullFeed">	
-=======
+
     	</div>
-    </div>
 
+    <% else %>
 
-
-
-    <form class="form" method="POST" action="/make-post">
-			
-			<label for="name">Post Name:</label><br>
-			<input type="text" name="subject" id="formField" /><br>
-			
-			<label for="name">Post Message:</label><br>
-			<textarea name="message_body" placeholder="Write a post..." /></textarea>
-
-				
-			<input class="btn" type="submit" value="Submit" />
-	</form>
-
-
-
-
-	<div id="fullFeed100">	
-    	<% @user.posts.each do |post| %>
-
-    		<div id="postFeed">
-    		<% postuser=post.user.user_id %>
-	   		<p><span id="userName"><%= post.time %> - <%= post.subject %> by <a href="/users/<%= postuser %>"><%= post.user.username %></a></span></p>
-	   		<p><%= post.body %></p>
-  			</div>
-  		<% end %>		
- 	</div>
-
-</div>
-
-
-
-
-<% elsif (session[:user_id] && session[:user_id] != @user.id) %>
-
-<div id="mainCont">
-	<div id="headerCont">
-		<div id="logo"> 
-			<img src="img/dogcrimes-med.png"> 
-		</div> 
-
-		<div id="memberHeaderInfo">
-		        <p><span id="logOut"><a href="/logout">Log Out</a></span></p>
-  				<p id="welcome">Profile for <%= @user.fname %> <%= @user.lname %><br>
-
-  				<img src="img/follow.img">
-
-  				</p>
-  				<nav id="menu">
-					<ul>
-						<li><a href="/">Feed</a>
-  						<li><a href="/users/<% @currentuser %>">Profile</a></li>
-  						<li><a href="/account">Account</a></li>
-  				
-					</ul>
-
-				</nav>
-  				
-        </div>
-		
-	</div>
-  <div id="feed70">	
->>>>>>> b9bc0b614a234af2d5ca94702d14d1e1c5b2fedb
-    <% @user.posts.each do |post| %>
-    	<div id="postFeed">
-	   		<p><span id="userName"><%= @post.time %> - <%=post.subject %> by <a href="/users/<%= :user.id %>"><%= @post.user_id.username %></a></span></p>
-	   		<p><%= post.body %></p>
-    	</div>
-    <% end %>
-  </div>
-  <div id="feed30">
-  	<h2>User <b><%= @user.fname %> <%= @user.lname %></b> following:</h2>
-	<% @user.following.each do |followee_id| %>
-	   <p><a href="/users/<%= :user.id %>"><%= @followee_id.username %></a></span></p>
-	 <% end %>      
-  </div> 
-</div>
-
-<% else %>
-<div id="mainCont">
-	<div id="headerCont">
-		<div id="logo"> 
+        <div id="logo"> 
 			<img src="img/dogcrimes-med.png"> 
 		</div> 
 		<div id="nonmembersSignup"> 
@@ -123,23 +41,9 @@
 			<h3> <p> Already a member? </p> 
 			<a href="/signin"> Sign In! </a> </h3> 
 		</div>  
-		
-	</div>
-  <div id="feed100">	
-  <p id="welcome">Profile for <%= @user.fname %> <%= @user.lname %></p>
-  <% @user.posts.each do |post| %>
-    <div id="postFeed">
-	   <p><span id="userName"><%= @post.time %> - <%=post.subject %> by <a href="/users/<%= :user.id %>"><%= @post.user_id.username %></a></span></p>
-	   <p><%= post.body %></p>
-    </div>
+    
     <% end %>
-  </div>
-
-</div>  
-<% end %>
-
-
-
-
+	</div>
+...................
 
 
