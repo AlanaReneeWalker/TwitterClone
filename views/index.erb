@@ -16,10 +16,11 @@
   		   </div>   
   		<% end %>
 
+
     	<% @posts.each do |post| %>
     		<div id="postFeed">
 	   			<p><span id="userName"><%= post.time %> - <%=post.subject %> by 
-	   			<a href="/users/<%= :user.id %>/posts"><%= post.user_id.username %></a></span></p>
+	   			<a href="/posts/<%= post.user_id %>"><%= post.user_id.username %></a></span></p>
 	   			<p><%= post.body %></p>
     		</div>
     	<% end %>

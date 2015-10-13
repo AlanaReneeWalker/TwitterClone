@@ -20,11 +20,12 @@ end
 
 
 get "/" do
-  @posts=Post.all
-  if session[:user_id]
-  	flash[:info] = "You've been signed in successfully."
+	if session[:user_id]
+  	@posts=Post.all
+  	flash[:info] = "You've signed in successfully."
   else
   	flash[:alert] = "You need to log in  or sign up to see a full website."
+  	redirect "/signin"
   end
   erb :index
 end
@@ -52,9 +53,11 @@ end
 
 
 post "/signin" do
-	@user=User.where(username: params[:username]).first
+	@user=User.where(username: params[:username]).last
   if (@user && @user.password == params[:password])
+
     session[:user_id] = @user.id
+    current_user
     flash[:info] = "You've been signed in successfully."  
     redirect "/" 
   else     
@@ -76,12 +79,11 @@ end
 
 get "/posts" do
 	@posts=Post.where(user_id: current_user.id)
-	@user=User.where(user_id: current_user.id)
 	erb :posts
 end
 
 
-get "/users/:user_id/posts" do
+get "/posts/:user_id" do
 	@posts = Post.where(user_id: params[:user_id])
 	@user=User.where(user_id: param[:user_id])
 	erb :posts
@@ -97,13 +99,13 @@ end
 
 get "/users/:followee_id/follow" do
   Follow.create(follower_id: session[:user_id], followee_id: params[:followee_id])
-  redirect "/users/:users.id/posts"
+  redirect "/posts/:post.user_id"
 end
 
 get "/users/:followee_id/unfollow" do
   @follow = Follow.where(follower_id: session[:user_id], followee_id: params[:followee_id]).first
   @follow.destroy
-  redirect "/users/:users.id/posts"
+  redirect "/posts/:post.user_id"
 end
 
 
