@@ -2,7 +2,9 @@
   <title>Profile</title>
 <% end %>
 
-<% if session[:user_id] == @user.id %>
+
+<h1>Account Info:</h1>
+<form class="form" method="POST" action="/edit">
 
 
 <div id="mainCont">
@@ -33,14 +35,15 @@
 
 
     <form class="form" method="POST" action="/make-post">
-			
-			<label for="name">Post Name:</label><br>
-			<input type="text" name="subject" id="formField" /><br>
-			
-			<label for="name">Post Message:</label><br>
-			<textarea name="message_body" placeholder="Write a post..." /></textarea>
 
-				
+			
+			<label for="name">First Name</label><br>
+				<input type="text" name="[user]fname" id="formField" value=<%= current_user.fname %>><br>
+			
+
+			<label for="name">Last Name</label><br>
+				<input type="text" name="[user]lname" id="formField" value=<%= current_user.lname %>><br>
+
 			<input class="btn" type="submit" value="Submit" />
 	</form>
 
@@ -121,23 +124,20 @@
 			<h3> <p> Already a member? </p> 
 			<a href="/signin"> Sign In! </a> </h3> 
 		</div>  
+
 		
-	</div>
-  <div id="feed100">	
-  <p id="welcome">Profile for <%= @user.fname %> <%= @user.lname %></p>
-  <% @user.posts.each do |post| %>
-    <div id="postFeed">
-	   <p><span id="userName"><%= @post.time %> - <%=post.subject %> by <a href="/users/<%= :user.id %>"><%= @post.user_id.username %></a></span></p>
-	   <p><%= post.body %></p>
-    </div>
-    <% end %>
-  </div>
+			<label for="email">Email</label><br>
+				<input type="text" name="[user]email" id="formField" value=<%= current_user.email %>><br>
+				
 
-</div>  
-<% end %>
+			<label for="username">User Name</label><br>
+				<input type="text" name="[user]username" id="formField" value=<%= current_user.username %>><br>
 
+			<label for="password">Password</label><br>
+				<input type="password" name="[user]password" id="formField" value=<%= current_user.password %>>	<br>
+				
+			<input class="btn" type="submit" value="Edit" />
+			
 
-
-
-
+</form>
 

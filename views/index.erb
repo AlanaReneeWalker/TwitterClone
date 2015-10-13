@@ -2,65 +2,28 @@
   <title>DogCrimes</title>
 <% end %>
 
-<div id="mainCont">
-	<div id="headerCont">
 
-	<% if session[:user_id] %>
+ <div id="feed100">	
 
-		<div id="logo"> 
-			<img src="img/dogcrimes-med.png"> 
-		</div> 
-
-		<div id="memberHeaderInfo">
-
-  				<p id="welcome">Posts from <%= @user.fname %> <%= @user.lname %></p>
-  				<nav id="menu">
-					<ul>
-						<li><a href="/">Feed</a></li>
-  						<li><a href="/users/<%= :user.id %>/posts">Posts</a></li>
-  						<li><a href="/users/<%= :user.id %>/connections">Connections</a></li>
-  						<li><a href="/account">Account</a></li>
-  				
-					</ul>
-
-				</nav>
-
-    	</div>
-
-    <% else %>
-
-        <div id="logo"> 
-			<img src="img/dogcrimes-med.png"> 
-		</div> 
-		<div id="nonmembersSignup"> 
-			<h3> <p> Not a member? </p> 
-			<a href="/signup"> Sign Up! </a> </h3> 
-		</div>
-		<div id="membersLogin"> 
-			<h3> <p> Already a member? </p> 
-			<a href="/signin"> Sign In! </a> </h3> 
-		</div>  
-    
-    <% end %>
-  </div>  
-
-
-  <div id="feed100">	
-
-	<% if flash[:info] %>     
-  		   <div class="notice">   
+		<% if flash[:alert] %>     
+  		   <div class="alert">   
+  			 <%=flash[:alert] %>     
+  		   </div>   
+  		<% end %>   
+  		<% if flash[:info] %>     
+  		   <div class="info">   
   			 <%=flash[:info] %>     
   		   </div>   
-  	<% end %>   
+  		<% end %>
 
-    <% @posts.each do |post| %>
-    <div id="postFeed">
-	   <p><span id="userName"><%= post.time %> - <%=post.subject %> by 
-	   <a href="/users/<%= :user.id %>"><%= post.user_id.username %></a></span></p>
-	   <p><%= post.body %></p>
-    </div>
-    <% end %>
-  </div>
+    	<% @posts.each do |post| %>
+    		<div id="postFeed">
+	   			<p><span id="userName"><%= post.time %> - <%=post.subject %> by 
+	   			<a href="/users/<%= :user.id %>/posts"><%= post.user_id.username %></a></span></p>
+	   			<p><%= post.body %></p>
+    		</div>
+    	<% end %>
+  	</div>
 
 </div>  
 
