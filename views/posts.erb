@@ -1,40 +1,28 @@
 <% content_for :head do %>
   <title>Posts</title>
 <% end %>
-
-<% if current_user.id == @posts.user_id %>
-
-    <form class="form" method="POST" action="/make-post">
+<h2>Make a new post:</h2>
+    <form class="form" id="form" method="POST" action="/make-post">
 			
 			<label for="name">Post Name:</label><br>
 			<input type="text" name="subject" id="formField" /><br>
 			
 			<label for="name">Post Message:</label><br>
-			<textarea name="message_body" placeholder="Write a post..." /></textarea>
+			<textarea name="body" placeholder="Write a post..." /></textarea>
 
 				
 			<input class="btn" type="submit" value="Submit" />
 	</form>
 
-<% end %>
 
-<% if current_user.id == posts.user_id %>
+
 	<h2>Your feed:</h2>
-	<% else %>
-		<p><span id="userFeed"><% post.user_id.username %> feed:</span></p>
-		<% if current_user.followees.where(following: { followee_id: user.id }).empty? %>
-      
-      		<a href="/users/<%= post.user_id %>/follow"><img src="img/follow.jpg"></a></li>
-    	<% else %>
-      
-      		<li><a href="/users/<%= post.user_id %>/unfollow"><img src="img/unfollow.jpg"></a></li>
-    	<% end %>
-	<% end %>
+	
 
-	<div id="feed100">	
-    	<% @posts.reverse.take(10).each do |post| %>
-			<div id="postFeed">
-    		<p><span id="userName"><%= post.time %> - <%= post.subject %> - by <a href="/posts/<%= post.user_id %>"><%= post.user_id.username %></a></span></p>
+	<div>	
+    	<% @posts.reverse.each do |post| %>
+			<div>
+    		<p><%= post.time %> - <%= post.subject %> - by <a href="/posts/<%= post.user_id %>"><%= post.user.username %></a></p>
 	   		<p><%= post.body %></p>
   			</div>
   		<% end %>		

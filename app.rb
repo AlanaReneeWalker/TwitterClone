@@ -78,21 +78,20 @@ get "/logout" do
 end
 
 get "/posts" do
-	@posts=Post.where(user_id: current_user.id)
+	@posts=Post.where(user_id: session[:user_id])
 	erb :posts
 end
 
 
 get "/posts/:user_id" do
 	@posts = Post.where(user_id: params[:user_id])
-	@user=User.where(user_id: param[:user_id])
+	
 	erb :posts
 end
 
 get "/connections" do
 
-	@usersFollowee= current_user.followees
-	@usersFollowers= current_user.followers
+	
 	erb :connections
 end
 
@@ -120,11 +119,16 @@ end
 
 
 post "/make-post" do
-	@post = Post.create(subject: params[:subject],
+	@post = Post.new(subject: params[:subject],
 						body: params[:body],
-						user_id: params[:user_id],
 						time: params[:time])
-	redirect "/posts"
+
+	@post.user_id = current_user.id
+	if @post.save
+		redirect "/posts"
+	else 
+		redirect "/posts"	
+	end
 end
 
 
