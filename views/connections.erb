@@ -3,56 +3,13 @@
 <% end %>
 
 
-<div id="mainCont">
-	<div id="headerCont">
-
-	<% if session[:user_id] %>
-
-		<div id="logo"> 
-			<img src="img/dogcrimes-med.png"> 
-		</div> 
-
-		<div id="memberHeaderInfo">
-
-  				<p id="welcome">Connections from <%= @user.fname %> <%= @user.lname %></p>
-  				<nav id="menu">
-					<ul>
-						<li><a href="/">Feed</a></li>
-  						<li><a href="/users/<%= :user.id %>/posts">Posts</a></li>
-  						<li><a href="/users/<%= :user.id %>/connections">Connections</a></li>
-  						<li><a href="/users/<%= :user.id %>/profile">Profile</a></li>
-  				
-					</ul>
-
-				</nav>
-
-    	</div>
-
-    <% else %>
-
-        <div id="logo"> 
-			<img src="img/dogcrimes-med.png"> 
-		</div> 
-		<div id="nonmembersSignup"> 
-			<h3> <p> Not a member? </p> 
-			<a href="/signup"> Sign Up! </a> </h3> 
-		</div>
-		<div id="membersLogin"> 
-			<h3> <p> Already a member? </p> 
-			<a href="/signin"> Sign In! </a> </h3> 
-		</div>  
-    
-    <% end %>
-	</div>
-<h1><%= @user.fname %> <%= @user.lname %> is following these users:</h1>
+<h1>You are following these users:</h1>
 <% @usersFollowee.each do |user| %>
 <p>Username: <a href="/users/<%= :user.id %>/posts"><%=user.username %></a></p>
 <% end %>
 
-<h1><%= @user.fname %> <%= @user.lname %> is followed by these users:</h1>
+<h1>You are followed by these users:</h1>
 <% @usersFollower.each do |user| %>
 <p>Username: <a href="/users/<%= :user.id %>/posts"><%=user.username %></a></p>
 <% end %>
  	
-
-</div>

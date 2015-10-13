@@ -1,49 +1,33 @@
 <% content_for :head do %>
-  <title>Connections: <%= @user.fname %> <%= @user.lname %></title>
+  <title>Profile</title>
 <% end %>
 
 
-<div id="mainCont">
-	<div id="headerCont">
+<h1>Account Info:</h1>
+<form class="form" method="POST" action="/edit">
 
-	<% if session[:user_id] %>
+		
+			
+			<label for="name">First Name</label><br>
+				<input type="text" name="[user]fname" id="formField" value=<%= current_user.fname %>><br>
+			
 
-		<div id="logo"> 
-			<img src="img/dogcrimes-med.png"> 
-		</div> 
+			<label for="name">Last Name</label><br>
+				<input type="text" name="[user]lname" id="formField" value=<%= current_user.lname %>><br>
+				
+		
+			<label for="email">Email</label><br>
+				<input type="text" name="[user]email" id="formField" value=<%= current_user.email %>><br>
+				
 
-		<div id="memberHeaderInfo">
+			<label for="username">User Name</label><br>
+				<input type="text" name="[user]username" id="formField" value=<%= current_user.username %>><br>
 
-  				<p id="welcome">Connections from <%= @user.fname %> <%= @user.lname %></p>
-  				<nav id="menu">
-					<ul>
-						<li><a href="/">Feed</a></li>
-  						<li><a href="/users/<%= :user.id %>/posts">Posts</a></li>
-  						<li><a href="/users/<%= :user.id %>/connections">Connections</a></li>
-  						<li><a href="/users/<%= :user.id %>/profile">Profile</a></li>
-  				
-					</ul>
+			<label for="password">Password</label><br>
+				<input type="password" name="[user]password" id="formField" value=<%= current_user.password %>>	<br>
+				
+			<input class="btn" type="submit" value="Edit" />
+			
 
-				</nav>
-
-    	</div>
-
-    <% else %>
-
-        <div id="logo"> 
-			<img src="img/dogcrimes-med.png"> 
-		</div> 
-		<div id="nonmembersSignup"> 
-			<h3> <p> Not a member? </p> 
-			<a href="/signup"> Sign Up! </a> </h3> 
-		</div>
-		<div id="membersLogin"> 
-			<h3> <p> Already a member? </p> 
-			<a href="/signin"> Sign In! </a> </h3> 
-		</div>  
-    
-    <% end %>
-	</div>
-...................
-
+</form>
 

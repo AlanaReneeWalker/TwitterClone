@@ -20,18 +20,13 @@ end
 
 
 get "/" do
- # if session[:user_id]
   @posts=Post.all
   if session[:user_id]
   	flash[:info] = "You've been signed in successfully."
   else
-  flash[:alert] = "You need to log in  or sign up to see a full website."
+  	flash[:alert] = "You need to log in  or sign up to see a full website."
   end
   erb :index
-  # else
-  # flash[:alert] = "You need to log in."
-  # redirect "/signin"
- # end
 end
 
 
@@ -79,19 +74,26 @@ get "/logout" do
 	 end
 end
 
-
-
-
-get "/users/:users.id/posts" do
-	@posts = Post.where(user_id: session[:user_id])
+get "/posts" do
+	@posts=Post.where(user_id: current_user.id)
+	@user=User.where(user_id: current_user.id)
 	erb :posts
 end
 
-get "/users/:user.id/connections" do
+
+get "/users/:user_id/posts" do
+	@posts = Post.where(user_id: params[:user_id])
+	@user=User.where(user_id: param[:user_id])
+	erb :posts
+end
+
+get "/connections" do
+
 	@usersFollowee= current_user.followees
 	@usersFollowers= current_user.followers
 	erb :connections
 end
+
 
 get "/users/:followee_id/follow" do
   Follow.create(follower_id: session[:user_id], followee_id: params[:followee_id])
@@ -105,8 +107,14 @@ get "/users/:followee_id/unfollow" do
 end
 
 
+get "/profile" do
+	erb :profile
+end
 
-
+post "/edit" do
+    @user = current_user.update(params[:user])
+    redirect "/profile"
+end
 
 
 post "/make-post" do
@@ -114,15 +122,17 @@ post "/make-post" do
 						body: params[:body],
 						user_id: params[:user_id],
 						time: params[:time])
-	redirect "/users/:users.id/posts"
+	redirect "/posts"
 end
 
 
+def deleteUser
+	User.destroy(current_user.id)
+end
 
 
 post '/delete' do
-	@user = User.where(username: params[:username]).last
-	User.delete
-	session[:user_id] = nil
-	redirect '/'
+	deleteUser
+	session[:user_id]=nil
+    redirect "/"
 end
