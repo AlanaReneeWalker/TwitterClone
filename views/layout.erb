@@ -8,17 +8,60 @@
     	  <title>Dog Crimes</title>
     <% end %>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
 </head>
 
 <% if content_for?(:bodySignup) %>
-  <%= yield_content :bodySignup %>
+  	<%= yield_content :bodySignup %>
 <% else %>
-  <body>
-<% end %>
+   <body>
+
+    <div id="mainCont">
+
+	  <% if current_user %>
+		<div id="headerCont">
+
+				<p id="rightMarg"><a href="/logout">Log Out</a></p>
+  				<p id="leftMarg"><h1>Welcome, <%= current_user.fname %> <%= current_user.lname %></h1></p>
+  				<nav id="menu">
+					<ul>
+						<li><a href="/">Global Feed</a></li>
+  						<li><a href="/posts">My Posts</a></li>
+  						<li><a href="/connections">Connections</a></li>
+  						<li><a href="/profile">Profile</a></li>
+  				
+					</ul>
+
+				</nav>
+
+    	</div>
+
+    <% else %>
+
+        <div id="headerCont">
+        <p id="leftMarg"><h1>Welcome, Guest</h1></p>
+			<div id="nonmembersSignup"> 
+				<h3>Not a member?<a href="/signup"> Sign Up! </a> </h3> 
+			</div>
+
+			<div id="membersLogin"> 
+				<h3>Already a member?<a href="/signin"> Sign In! </a> </h3> 
+			</div>  
+    
+    	</div> 
+
+    <% end %>
+ <% end %>  
+
+
+
 
 <%= yield %>
 
+
+
+</div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="main.js"></script> -->
 </body>

@@ -1,73 +1,40 @@
 <% content_for :head do %>
-  <title>Posts from <%= @user.fname %> <%= @user.lname %></title>
+  <title>Posts</title>
 <% end %>
 
+<% if @user.id == current_user.id %>
 
-<div id="mainCont">
-	<div id="headerCont">
-
-	<% if session[:user_id] %>
-
-		<div id="logo"> 
-			<img src="img/dogcrimes-med.png"> 
-		</div> 
-
-		<div id="memberHeaderInfo">
-
-  				<p id="welcome">Posts from <%= @user.fname %> <%= @user.lname %></p>
-  				<nav id="menu">
-					<ul>
-						<li><a href="/">Feed</a></li>
-  						<li><a href="/users/<%= :user.id %>/posts">Posts</a></li>
-  						<li><a href="/users/<%= :user.id %>/connections">Connections</a></li>
-  						<li><a href="/account">Account</a></li>
-  				
-					</ul>
-
-				</nav>
-
-    	</div>
-
-    <% else %>
-
-        <div id="logo"> 
-			<img src="img/dogcrimes-med.png"> 
-		</div> 
-		<div id="nonmembersSignup"> 
-			<h3> <p> Not a member? </p> 
-			<a href="/signup"> Sign Up! </a> </h3> 
-		</div>
-		<div id="membersLogin"> 
-			<h3> <p> Already a member? </p> 
-			<a href="/signin"> Sign In! </a> </h3> 
-		</div>  
-    
-    <% end %>
-  </div>  
-
-<% if session[:user_id] == current_user.id %>
-
-    <form class="form" method="POST" action="/make-post">
+<h2>Make a new post:</h2>
+    <form class="form" id="form" method="POST" action="/make-post">
 			
 			<label for="name">Post Name:</label><br>
 			<input type="text" name="subject" id="formField" /><br>
 			
 			<label for="name">Post Message:</label><br>
-			<textarea name="message_body" placeholder="Write a post..." /></textarea>
+			<textarea name="body" placeholder="Write a post..." /></textarea>
+			<br><br>
 
 				
 			<input class="btn" type="submit" value="Submit" />
 	</form>
-<% end %>
 
-	<div id="feed100">	
-    	<% @posts.each do |post| %>
-			<div id="postFeed">
-    		<p><span id="userName"><%= post.time %> - <%= post.subject %></span></p>
+
+
+	<h2>My feed:</h2>
+
+	<% else %>
+
+		<h2><b><%= @user.username.upcase %></b> post feed:</h2>
+
+	<%end%>
+
+	<div>	
+    	<% @posts.reverse.each do |post| %>
+			<div id="postFormat">
+    		<p><b><%= post.subject %></b> - by <a href="/posts/<%= post.user_id %>"><%= post.user.username %></a> - <%= post.time %></p>
 	   		<p><%= post.body %></p>
   			</div>
   		<% end %>		
  	</div>
  	
 
-</div>

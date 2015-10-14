@@ -31,7 +31,18 @@ h2 {
 
 	
 }
+h3 {
+	font-style: Georgia;
+	font-size: 14px;
+	color: black;
+	text-align: center;
+	padding-bottom: 10px;
+	border-bottom: 0.5px dotted gray;
+	padding-top: 10px;
+	border-top: .5pxpx dotted gray;
 
+	
+}
 
 #formField {
 	font-size:18px;
@@ -39,6 +50,10 @@ h2 {
 	height:20px;
 	width:60%;
 	
+}
+
+#editForm {
+	margin-left: 20px;
 }
 
 #login-main{
@@ -79,12 +94,12 @@ margin-left: 15%;
 	
 	
 }
-.notice {
+.info {
     width:90%;
 	height:100%;
 	
 	text-align: center;
-	margin-top: 10%;
+	margin-top: 10px;
 	margin-left: 10%;
 	color: black;
 	text-decoration: bold;
@@ -105,7 +120,7 @@ margin-left: 15%;
 
 #mainCont {
 	width: 60%;
-	height: 1000px;
+	height: auto;
 	border: 1px solid gray;
 	border-radius: 5px 5px 5px 5px;
 	margin-left: auto;
@@ -113,28 +128,43 @@ margin-left: 15%;
 }
 
 #headerCont {
-	display: inline-block;
+	/*display: inline-block;*/
 	width: 100%;
-	
+	height: 140px;
+	background-image:url("img/dogcrimes-med.png");
+    background-position: 2% 100%;
+    background-size: 18% 88%;
+    background-repeat: no-repeat;
 	border-bottom: 1px solid gray;
+	
 }
-#logo {
-	float: left;
-	display: inline;
-	width: 33%;
+
+#postFormat {
+	margin: 8px;
+	padding: 8px;
+	width: 95%;
+	height: auto;
+	border: 1px solid #d3d3d3;
+	background-color: #fafae8;
 }
-#logo img {
-	width: 50%;
-	margin-bottom: -5px;
+
+#leftMarg {
+	text-align: right;
+	margin-right:30px;
 }
+#rightMarg {
+	text-align: right;
+	margin-right:20px;
+}
+
 #nonmembersSignup {
-	float: left;
+	float: center;
 	display: inline;
 	width: 33%;
 	text-align: center;
 }
 #membersLogin {
-	float: left;
+	float: center;
 	display: inline;
 	width: 33%;
 	text-align: center;
@@ -153,13 +183,14 @@ margin-left: 15%;
 #menu{
 	width: 100%;
 	padding: 10px;
+	margin-top: 36px;
 	height: 30px;
 /*	border-bottom: 1px solid black;*/
-	position: relative;
+	/*position: relative;*/
 	
 }
 #menu ul {
-	margin: 20px 270px;
+	margin: 50px 140px;
 	display: inline;
 
 }
@@ -167,7 +198,7 @@ margin-left: 15%;
 #menu li {
 	display: inline-block;
 	font-size: 20px;
-	float: left;
+	float: center;
 
 }
 
@@ -211,11 +242,33 @@ nav {
 
 #feed100 {
 	width: 95%;
+
 }
 
 #logOut {
 	margin-right: 0px;
 	margin-top: 0px;
+}
+
+textarea {
+   height: 70px;
+   width: 400px;
+}
+
+#form {
+	margin-left:20px;
+}
+
+#spanImp {
+	font-style: Georgia;
+	font-size: 20px;
+	color: black;
+	text-align: center;
+	margin-top: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px dotted black;
+	padding-top: 10px;
+	border-top: 1px dotted black;
 }
 
 

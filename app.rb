@@ -11,29 +11,24 @@ enable :sessions
 set :sessions, true
 use Rack::Flash, sweep: true
 
+
 def current_user
-	if session [:user_id]
+	if session[:user_id]
 		@current_user = User.find(session[:user_id])
 	end
 end
 
+
 get "/" do
-  @posts=Post.all
+	if session[:user_id]
+  	@posts=Post.all
+  	flash[:info] = "You've signed in successfully."
+  else
+  	flash[:alert] = "You need to log in  or sign up to see a full website."
+  	redirect "/signin"
+  end
   erb :index
 end
-
-get "/users/:users.id/posts" do
-	@posts = Post.where(user_id: session[:user_id])
-	erb :posts
-end
-
-get "/users/:user.id/connections" do
-	@usersFollowee= current_user.followees
-	@usersFollowers= current_user.followers
-	erb :connections
-end
-
-
 
 
 get "/signup" do
@@ -48,7 +43,7 @@ post "/signup" do
   	 				  username: params[:username],
   	 				  password: params[:password])
   flash[:info] = "Please sign in using your new username and password."
-  redirect "/sign_in"
+  redirect "/signin"
 end
 
 
@@ -58,24 +53,17 @@ end
 
 
 post "/signin" do
-	@user=User.where(username: params[:username]).first
+	@user=User.where(username: params[:username]).last
   if (@user && @user.password == params[:password])
+
     session[:user_id] = @user.id
+    current_user
     flash[:info] = "You've been signed in successfully."  
     redirect "/" 
   else     
 	flash[:alert] = "Wrong username and/or password."
 	redirect "/signin" 
   end
-end
-
-
-post "/make-post" do
-	@post = Post.create(subject: params[:subject],
-						body: params[:body],
-						user_id: params[:user_id],
-						time: params[:time])
-	redirect "/users/:users.id/posts"
 end
 
 
@@ -86,9 +74,74 @@ get "/logout" do
 		redirect '/'
 	 else
 	 	redirect '/'
+
 end
+
+get "/posts" do
+	@posts=Post.where(user_id: session[:user_id])
+	@user = current_user
+	erb :posts
 end
 
 
+get "/posts/:user_id" do
+	@posts = Post.where(user_id: params[:user_id])
+	@user = User.where(id: params[:user_id]).last
+	erb :posts
+end
 
+get "/connections" do
+
+	
+	erb :connections
+end
+
+def followApp(params)
+	@follower=params[:follower_id].to_i
+    if @follower != current_user.id 
+        Follow.create(follower_id: @follower, followee_id: current_user.id)
+    end
+end    
+
+post "/follow" do
+	   followApp(params)
+       redirect "/connections"
+end
+
+
+get "/profile" do
+	erb :profile
+end
+
+post "/edit" do
+    @user = current_user.update(params[:user])
+    redirect "/profile"
+end
+
+
+post "/make-post" do
+	time=Time.now
+	@post = Post.new(subject: params[:subject],
+						body: params[:body],
+						time: "#{time.year}-#{time.month}-#{time.day} [#{time.hour}:#{time.min}]")
+
+	@post.user_id = current_user.id
+	if @post.save
+		redirect "/posts"
+	else 
+		redirect "/posts"	
+	end
+end
+
+
+def deleteUser
+	User.destroy(current_user.id)
+end
+
+
+post '/delete' do
+	deleteUser
+	session[:user_id]=nil
+    redirect "/"
+end
 
