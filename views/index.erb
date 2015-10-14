@@ -3,7 +3,7 @@
 <% end %>
 
 
- <div id="feed100">	
+ <div>
 
 		<% if flash[:alert] %>     
   		   <div class="alert">   
@@ -18,11 +18,10 @@
 
 
     	<% @posts.reverse.each do |post| %>
-    		<div id="postFeed">
-	   			<p><span id="userName"><%= post.time %> - <%=post.subject %> by 
-	   			<a href="/posts/<%= post.user_id %>"><%= post.user.username %></a></span></p>
-	   			<p><%= post.body %></p>
-    		</div>
+    		<div id="postFormat">
+        <p><b><%= post.subject %></b> - by <a href="/posts/<%= post.user_id %>"><%= post.user.username %></a> - <%= post.time %></p>
+        <p><%= post.body %></p>
+        </div>
     	<% end %>
   	</div>
 

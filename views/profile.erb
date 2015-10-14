@@ -4,6 +4,8 @@
 
 
 <h1>Account Info:</h1>
+<h3>Edit and Save Your Personal Settings</h3>
+<div id="editForm"
 <form class="form" method="POST" action="/edit">
 
 
@@ -136,10 +138,10 @@
 			<label for="password">Password</label><br>
 				<input type="password" name="[user]password" id="formField" value=<%= current_user.password %>>	<br>
 				
-			<input class="btn" type="submit" value="Edit" />
+			<input class="btn" type="submit" value="Save" />
 			
 
 </form>
+</div>
 
-<h2>Want to delete your account?</h2>
-<a href="/delete">Delete Account</a>
+<h2>Want to delete your account? <a href="/delete">YES</a> - <a href="/posts">NO</a></h2>
