@@ -96,16 +96,17 @@ get "/connections" do
 	erb :connections
 end
 
+def followApp(params)
+	@follower=params[:follower_id].to_i
+    if @follower != current_user.id 
+        Follow.create(follower_id: @follower, followee_id: current_user.id)
+    end
+end    
 
-get "/users/:followee_id/follow" do
-  Follow.create(follower_id: session[:user_id], followee_id: params[:followee_id])
-  redirect "/posts/:post.user_id"
-end
-
-get "/users/:followee_id/unfollow" do
-  @follow = Follow.where(follower_id: session[:user_id], followee_id: params[:followee_id]).first
-  @follow.destroy
-  redirect "/posts/:post.user_id"
+post "/follow" do
+	   followApp(params)
+       redirect "/connections"
+    end
 end
 
 
