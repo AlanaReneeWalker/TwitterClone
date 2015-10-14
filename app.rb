@@ -106,7 +106,7 @@ end
 post "/follow" do
 	   followApp(params)
        redirect "/connections"
-    end
+    
 end
 
 
@@ -144,4 +144,17 @@ post '/delete' do
 	deleteUser
 	session[:user_id]=nil
     redirect "/"
+end
+
+
+get "/users/:followee_id/follow" do
+  Follow.create(follower_id: session[:user_id], followee_id: params[:followee_id])
+  redirect "/posts/:user_id"
+end
+
+
+get "/users/:followee_id/unfollow" do
+  @follow = Follow.where(follower_id: session[:user_id], followee_id: params[:followee_id]).first
+  @follow.destroy
+  redirect "/posts/:user_id"
 end
