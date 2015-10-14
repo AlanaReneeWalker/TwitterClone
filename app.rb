@@ -147,13 +147,17 @@ post '/delete' do
 end
 
 get "/users/:followee_id/follow" do
-  Follow.create(follower_id: session[:user_id], followee_id: params[:followee_id])
-  redirect "/posts/:user_id"
+  Following.create(follower_id: session[:user_id], followee_id: params[:followee_id])
+  # @user = User.where(id: params[:user_id]).last
+  # redirect "/posts/:user_id"
+  redirect "/"
 end
 
 
 get "/users/:followee_id/unfollow" do
-  @follow = Follow.where(follower_id: session[:user_id], followee_id: params[:followee_id]).first
+  @follow = Following.where(follower_id: session[:user_id], followee_id: params[:followee_id]).first
   @follow.destroy
-  redirect "/posts/:user_id"
+  # @user = User.where(id: params[:user_id]).last
+  # redirect "/posts/:user_id"
+  redirect "/"
 end
