@@ -74,7 +74,7 @@ get "/logout" do
 		redirect '/'
 	 else
 	 	redirect '/'
-	 end
+
 end
 
 get "/posts" do
@@ -106,7 +106,6 @@ end
 post "/follow" do
 	   followApp(params)
        redirect "/connections"
-    end
 end
 
 
@@ -145,3 +144,4 @@ post '/delete' do
 	session[:user_id]=nil
     redirect "/"
 end
+

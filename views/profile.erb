@@ -8,7 +8,36 @@
 <div id="editForm"
 <form class="form" method="POST" action="/edit">
 
-		
+
+<div id="mainCont">
+	<div id="headerCont">
+		<div id="logo"> 
+			<img src="img/dogcrimes-med.png"> 
+		</div> 
+
+		<div id="memberHeaderInfo">
+  				<p id="welcome">Profile for <%= @user.fname %> <%= @user.lname %></p>
+  				<nav id="menu">
+					<ul>
+						<li><a href="/">Feed</a></li>
+  						<li><a href="/users/<%= :user.id %>">Profile</a></li>
+  						<li><a href="/account">Account</a></li>
+  				
+					</ul>
+
+				</nav>
+
+		</div>
+		</div>
+	<div id="fullFeed">	
+
+    	</div>
+    </div>
+
+
+
+    <form class="form" method="POST" action="/make-post">
+
 			
 			<label for="name">First Name</label><br>
 				<input type="text" name="[user]fname" id="formField" value=<%= current_user.fname %>><br>
@@ -16,7 +45,88 @@
 
 			<label for="name">Last Name</label><br>
 				<input type="text" name="[user]lname" id="formField" value=<%= current_user.lname %>><br>
-				
+
+			<input class="btn" type="submit" value="Submit" />
+	</form>
+
+	
+
+	<div id="fullFeed100">	
+    	<% @user.posts.each do |post| %>
+
+    		<div id="postFeed">
+    		<% postuser=post.user.user_id %>
+	   		<p><span id="userName"><%= post.time %> - <%= post.subject %> by <a href="/users/<%= postuser %>"><%= post.user.username %></a></span></p>
+	   		<p><%= post.body %></p>
+  			</div>
+  		<% end %>		
+ 	</div>
+
+</div>
+
+
+
+
+<% elsif (session[:user_id] && session[:user_id] != @user.id) %>
+
+<div id="mainCont">
+	<div id="headerCont">
+		<div id="logo"> 
+			<img src="img/dogcrimes-med.png"> 
+		</div> 
+
+		<div id="memberHeaderInfo">
+		        <p><span id="logOut"><a href="/logout">Log Out</a></span></p>
+  				<p id="welcome">Profile for <%= @user.fname %> <%= @user.lname %><br>
+
+  				<img src="img/follow.img">
+
+  				</p>
+  				<nav id="menu">
+					<ul>
+						<li><a href="/">Feed</a>
+  						<li><a href="/users/<% @currentuser %>">Profile</a></li>
+  						<li><a href="/account">Account</a></li>
+  				
+					</ul>
+
+				</nav>
+  				
+        </div>
+		
+	</div>
+  <div id="feed70">	
+
+    <% @user.posts.each do |post| %>
+    	<div id="postFeed">
+	   		<p><span id="userName"><%= @post.time %> - <%=post.subject %> by <a href="/users/<%= :user.id %>"><%= @post.user_id.username %></a></span></p>
+	   		<p><%= post.body %></p>
+    	</div>
+    <% end %>
+  </div>
+  <div id="feed30">
+  	<h2>User <b><%= @user.fname %> <%= @user.lname %></b> following:</h2>
+	<% @user.following.each do |followee_id| %>
+	   <p><a href="/users/<%= :user.id %>"><%= @followee_id.username %></a></span></p>
+	 <% end %>      
+  </div> 
+</div>
+
+<% else %>
+<div id="mainCont">
+	<div id="headerCont">
+		<div id="logo"> 
+			<img src="img/dogcrimes-med.png"> 
+		</div> 
+		<div id="nonmembersSignup"> 
+			<h3> <p> Not a member? </p> 
+			<a href="/signup"> Sign Up! </a> </h3> 
+		</div>
+		<div id="membersLogin"> 
+			<h3> <p> Already a member? </p> 
+			<a href="/signin"> Sign In! </a> </h3> 
+		</div>  
+
 		
 			<label for="email">Email</label><br>
 				<input type="text" name="[user]email" id="formField" value=<%= current_user.email %>><br>
