@@ -1,6 +1,9 @@
 <% content_for :head do %>
   <title>Posts</title>
 <% end %>
+
+<% if @user.id == current_user.id %>
+
 <h2>Make a new post:</h2>
     <form class="form" id="form" method="POST" action="/make-post">
 			
@@ -9,6 +12,7 @@
 			
 			<label for="name">Post Message:</label><br>
 			<textarea name="body" placeholder="Write a post..." /></textarea>
+			<br><br>
 
 				
 			<input class="btn" type="submit" value="Submit" />
@@ -16,13 +20,18 @@
 
 
 
-	<h2>Your feed:</h2>
-	
+	<h2>My feed:</h2>
+
+	<% else %>
+
+		<h2><b><%= @user.username.upcase %></b> post feed:</h2>
+
+	<%end%>
 
 	<div>	
     	<% @posts.reverse.each do |post| %>
-			<div>
-    		<p><%= post.time %> - <%= post.subject %> - by <a href="/posts/<%= post.user_id %>"><%= post.user.username %></a></p>
+			<div id="postFormat">
+    		<p><b><%= post.subject %></b> - by <a href="/posts/<%= post.user_id %>"><%= post.user.username %></a> - <%= post.time %></p>
 	   		<p><%= post.body %></p>
   			</div>
   		<% end %>		

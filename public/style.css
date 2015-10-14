@@ -105,7 +105,7 @@ margin-left: 15%;
 
 #mainCont {
 	width: 60%;
-	height: 1000px;
+	height: auto;
 	border: 1px solid gray;
 	border-radius: 5px 5px 5px 5px;
 	margin-left: auto;
@@ -122,6 +122,14 @@ margin-left: 15%;
     background-repeat: no-repeat;
 	border-bottom: 1px solid gray;
 	
+}
+
+#postFormat {
+	margin: 8px;
+	padding: 8px;
+	width: 95%;
+	height: auto;
+	border: 1px solid #d3d3d3;
 }
 
 #leftMarg {
@@ -218,6 +226,7 @@ nav {
 
 #feed100 {
 	width: 95%;
+
 }
 
 #logOut {
@@ -232,6 +241,18 @@ textarea {
 
 #form {
 	margin-left:20px;
+}
+
+#spanImp {
+	font-style: Georgia;
+	font-size: 20px;
+	color: black;
+	text-align: center;
+	margin-top: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px dotted black;
+	padding-top: 10px;
+	border-top: 1px dotted black;
 }
 
 

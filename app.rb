@@ -79,13 +79,14 @@ end
 
 get "/posts" do
 	@posts=Post.where(user_id: session[:user_id])
+	@user = current_user
 	erb :posts
 end
 
 
 get "/posts/:user_id" do
 	@posts = Post.where(user_id: params[:user_id])
-	
+	@user = User.where(id: params[:user_id]).last
 	erb :posts
 end
 
@@ -119,9 +120,10 @@ end
 
 
 post "/make-post" do
+	time=Time.now
 	@post = Post.new(subject: params[:subject],
 						body: params[:body],
-						time: params[:time])
+						time: "#{time.year}-#{time.month}-#{time.day} [#{time.hour}:#{time.min}]")
 
 	@post.user_id = current_user.id
 	if @post.save
