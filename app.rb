@@ -74,7 +74,7 @@ get "/logout" do
 		redirect '/'
 	 else
 	 	redirect '/'
-
+     end
 end
 
 get "/posts" do
