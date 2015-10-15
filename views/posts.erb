@@ -25,27 +25,27 @@
 	<% else %>
 
 <div>
-<h2><b><%= @user.username.upcase %></b> account info:</h2>
+<h2><b>User <%= @user.username.upcase %></b> account info:</h2>
 <ul>
 <li>Fist Name: <%= @user.fname %></li>
 <li>Last Name: <%= @user.lname %></li>
 <li>email: <%= @user.email %></li>
 </ul>
 <% if User.find(session[:user_id]).followees.where(followings:{followee_id: @user.id}).empty?%>
-<a href='/users/<%= @user.id %>/follow'>Follow</a>
+<a href='/users/<%= @user.id %>/follow'><img src="../img/follow.jpg"></a>
 <% else %>
-<a href= '/users/<%= @user.id %>/unfollow'>Unfollow</a>
+<a href= '/users/<%= @user.id %>/unfollow'><img src="../img/unfollow.jpg"></a>
 <%end%>
 
 
 
 
-		<h2><b><%= @user.username.upcase %></b> post feed:</h2>
+		<h2><b>User <%= @user.username.upcase %></b> post feed:</h2>
 
 	<%end%>
 
 	<div>	
-    	<% @posts.reverse.each do |post| %>
+    	<% @posts.reverse.take(10).each do |post| %>
 			<div id="postFormat">
     		<p><b><%= post.subject %></b> - by <a href="/posts/<%= post.user_id %>"><%= post.user.username %></a> - <%= post.time %></p>
 	   		<p><%= post.body %></p>

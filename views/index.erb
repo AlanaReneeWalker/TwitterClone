@@ -17,7 +17,7 @@
   		<% end %>
 
 
-    	<% @posts.reverse.each do |post| %>
+    	<% @posts.reverse.take(10).each do |post| %>
     		<div id="postFormat">
         <p><b><%= post.subject %></b> - by <a href="/posts/<%= post.user_id %>"><%= post.user.username %></a> - <%= post.time %></p>
         <p><%= post.body %></p>

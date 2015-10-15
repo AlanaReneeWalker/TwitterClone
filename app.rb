@@ -91,23 +91,10 @@ get "/posts/:user_id" do
 end
 
 get "/connections" do
-
-	
+	@usersFollowers = current_user.followers
+	@usersFollowees = current_user.followees
 	erb :connections
-end
-
-def followApp(params)
-	@follower=params[:follower_id].to_i
-    if @follower != current_user.id 
-        Follow.create(follower_id: @follower, followee_id: current_user.id)
-    end
-end    
-
-post "/follow" do
-	   followApp(params)
-       redirect "/connections"
-
-end
+end  
 
 
 get "/profile" do
@@ -118,7 +105,6 @@ post "/edit" do
     @user = current_user.update(params[:user])
     redirect "/profile"
 end
-
 
 post "/make-post" do
 	time=Time.now
@@ -148,16 +134,12 @@ end
 
 get "/users/:followee_id/follow" do
   Following.create(follower_id: session[:user_id], followee_id: params[:followee_id])
-  # @user = User.where(id: params[:user_id]).last
-  # redirect "/posts/:user_id"
-  redirect "/"
+  redirect "/connections"
 end
 
 
 get "/users/:followee_id/unfollow" do
   @follow = Following.where(follower_id: session[:user_id], followee_id: params[:followee_id]).first
   @follow.destroy
-  # @user = User.where(id: params[:user_id]).last
-  # redirect "/posts/:user_id"
-  redirect "/"
+  redirect "/connections"
 end

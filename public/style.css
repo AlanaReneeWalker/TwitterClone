@@ -28,6 +28,7 @@ h2 {
 	border-bottom: 1px dotted black;
 	padding-top: 10px;
 	border-top: 1px dotted black;
+	background-color: #fcdaf1;
 
 	
 }
@@ -50,6 +51,12 @@ h3 {
 	height:20px;
 	width:60%;
 	
+	
+}
+
+#postField {
+  width:60%;
+
 }
 
 #editForm {
@@ -252,7 +259,7 @@ nav {
 
 textarea {
    height: 70px;
-   width: 400px;
+   width: 60%;
 }
 
 #form {

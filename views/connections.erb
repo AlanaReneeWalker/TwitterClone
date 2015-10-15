@@ -1,15 +1,18 @@
 <% content_for :head do %>
-  <title>Connections: <%= @user.fname %> <%= @user.lname %></title>
+  <title>Connections: <%= current_user.fname %> <%= current_user.lname %></title>
 <% end %>
 
 
-<h1>You are following these users:</h1>
-<% @usersFollowee.each do |user| %>
-<p>Username: <a href="/users/<%= :user.id %>/posts"><%=user.username %></a></p>
+<h2>You are following these users:</h2>
+ 
+<% @usersFollowees.reverse.each do |user| %>
+<p><a href="/posts/<%= user.id %>"><%=user.username %></a></p>
 <% end %>
 
-<h1>You are followed by these users:</h1>
-<% @usersFollower.each do |user| %>
-<p>Username: <a href="/users/<%= :user.id %>/posts"><%=user.username %></a></p>
+<h2>You are followed by these users:</h2>
+
+<% @usersFollowers.reverse.each do |user| %>
+<%if user.id != current_user.id %>
+<p><a href="/posts/<%= user.id %>"><%=user.username %></a></p>
 <% end %>
- 	
+<% end %>

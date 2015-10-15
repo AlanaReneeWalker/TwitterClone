@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts
   has_one :profile
-  # has_many :follows, foreign_key: :followee_id
   has_many :followings, foreign_key: :follower_id, class_name: "::Following"
   has_many :followers, through: :followings, class_name: User
   has_many :followees, through: :followings, class_name: User
