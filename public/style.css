@@ -147,7 +147,8 @@ margin-left: 15%;
 }
 
 #postFormat {
-	margin: 8px;
+	margin: auto;
+	margin-bottom: 8px;
 	padding: 8px;
 	width: 95%;
 	height: auto;
@@ -277,5 +278,6 @@ textarea {
 	padding-top: 10px;
 	border-top: 1px dotted black;
 }
+
 
 
